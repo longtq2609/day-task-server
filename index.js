@@ -13,6 +13,7 @@ dotenv.config();
 //CONNECT DATABASE
 mongoose.connect(process.env.MONGOODB_URL, {
 
+    
 })
     .then(() => {
         console.log("Connected to MongoDB");
