@@ -2,8 +2,12 @@ const userController = require("../controller/userController");
 
 const router = require("express").Router();
 
+
 // ADD USER
-router.post("/", userController.addUser)
+router.post("/register", userController.registerUser)
+
+// LOGIN
+router.post('/login', userController.login);
 
 // UPDATE USER
 router.put("/:id", userController.updateUser);

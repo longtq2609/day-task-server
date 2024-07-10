@@ -7,12 +7,12 @@ const morgan = require("morgan");
 const dotenv = require("dotenv");
 const userRoute = require("./routes/user")
 
+
 dotenv.config();
 
 //CONNECT DATABASE
 mongoose.connect(process.env.MONGOODB_URL, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
+
 })
     .then(() => {
         console.log("Connected to MongoDB");
@@ -32,7 +32,8 @@ app.use(morgan("common"));
 
 //ROUTE
 
-app.use("/v1/user", userRoute);
+app.use("/api/user", userRoute);
+
 
 
 
