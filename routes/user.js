@@ -12,5 +12,8 @@ router.post('/login', userController.login);
 // UPDATE USER
 router.put("/:id", userController.updateUser);
 
+// GET ALL USER
+router.get("/get-all-user", userController.getAllUser);
+
 
 module.exports = router

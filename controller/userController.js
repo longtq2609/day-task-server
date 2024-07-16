@@ -24,7 +24,14 @@ const userController = {
             }
             
             const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
-            res.json({ token });
+            res.json({ 
+                token,
+                user: {
+                    _id: user._id,
+                    user_name: user.user_name,
+                    email: user.email,
+                }
+            });
         } catch (error) {
             console.error('Error in authController.login:', error); // Better error logging
             if (error.message === 'JWT_SECRET environment variable is not set') {
@@ -71,7 +78,16 @@ const userController = {
             await user.updateOne({ $set: req.body });
             res.status(200).json("Updated successfully!");
         } catch (error) {
-            res.status(500).json(err);
+            res.status(500).json(error);
+        }
+    },
+
+    getAllUser : async(req, res) => {
+        try {
+            const user = await User.find({});
+            res.json(user)
+        } catch (error) {
+            res.status(500).json(error)
         }
     }
 };

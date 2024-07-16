@@ -23,7 +23,7 @@ const userSchema = new mongoose.Schema({
     },
     avatar: {  
         type: String,
-        default: '', 
+        default: 'https://i.ibb.co/d2BgxJv/Rectangle-6.png', 
     },
     role: { 
         type: String,
