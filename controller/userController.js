@@ -42,21 +42,20 @@ const userController = {
         }
     },
 
-    registerUser : async (req, res) => {
+    registerUser: async (req, res) => {
         try {
             const { user_name, email, password } = req.body;
     
-            const existingUser = await User.findOne({ email });
+            const existingUser = await User.findOne({ $or: [{ email }, { user_name }] }); 
             if (existingUser) {
-                return res.status(400).json({ message: 'Email đã được sử dụng' });
+                return res.status(400).json({ message: existingUser.email === email ? 'Email đã được sử dụng' : 'user_name đã được sử dụng' });
+            }
+            
+            if (!user_name){
+                return res.status(400).json({ message: 'user_name không được để trống!' });
             }
     
-            const existingUserName = await User.findOne({ user_name });
-            if (existingUserName) {
-                return res.status(400).json({ message: 'Tên đăng nhập đã được sử dụng' });
-            }
-    
-            const hashedPassword = await bcrypt.hash(password, 10); 
+            const hashedPassword = await bcrypt.hash(password, 10);
             const newUser = new User({
                 user_name,
                 email,
@@ -65,7 +64,7 @@ const userController = {
     
             await newUser.save();
     
-            res.status(201).json({ message: 'Đăng ký thành công', user: newUser }); 
+            res.status(201).json({ message: 'Đăng ký thành công', user: newUser });
         } catch (error) {
             console.error(error);
             res.status(500).json({ message: 'Lỗi server' });
