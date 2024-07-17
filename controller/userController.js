@@ -57,8 +57,9 @@ const userController = {
     
             const hashedPassword = await bcrypt.hash(password, 10);
             const newUser = new User({
-                user_name,
-                email,
+                display_name : user_name,
+                user_name : user_name,
+                email : email,
                 password: hashedPassword,
             });
     
