@@ -11,8 +11,10 @@ const taskSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
   }],
+  parent_id: { type: mongoose.Schema.Types.ObjectId, ref: 'Task' } ,// Trường mới
   created_at: { type: Date, default: Date.now },
-  updated_at: { type: Date, default: Date.now }
+  updated_at: { type: Date, default: Date.now },
+
 });
 
 const Task = mongoose.model('Task', taskSchema);
