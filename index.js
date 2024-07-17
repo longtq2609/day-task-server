@@ -6,7 +6,7 @@ var bodyParser = require("body-parser");
 const morgan = require("morgan");
 const dotenv = require("dotenv");
 const userRoute = require("./routes/user")
-
+const taskRoute = require("./routes/task")
 
 dotenv.config();
 
@@ -33,6 +33,7 @@ app.use(morgan("common"));
 //ROUTE
 
 app.use("/api/user", userRoute);
+app.use("/api/task", taskRoute);
 
 
 
