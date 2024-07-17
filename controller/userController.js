@@ -83,7 +83,7 @@ const userController = {
 
     getAllUser : async(req, res) => {
         try {
-            const user = await User.find({}, '_id display_name avatar email');
+            const user = await User.find({}, '_id display_name avatar email user_name');
             res.json(user)
         } catch (error) {
             res.status(500).json(error)
