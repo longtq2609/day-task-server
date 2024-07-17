@@ -12,8 +12,7 @@ dotenv.config();
 
 //CONNECT DATABASE
 mongoose.connect(process.env.MONGOODB_URL, {
-
-    
+    dbName: 'day-task'
 })
     .then(() => {
         console.log("Connected to MongoDB");
